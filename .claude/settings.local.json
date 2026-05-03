@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "PowerShell(node -e \"require\\('docx'\\); console.log\\('docx OK'\\)\" 2>&1)"
+    ]
+  }
+}
