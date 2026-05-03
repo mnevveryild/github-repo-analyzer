@@ -7,21 +7,9 @@ st.set_page_config(
     layout="wide",
 )
 
-st.title("🔍 GitHub Repo Analiz Agent'ı")
-st.markdown("Bir GitHub repo URL'si girin, agent projeyi analiz etsin.")
+st.title(" GitHub Repo Analizi")
+st.markdown("Bir GitHub repo URL'si girin.")
 
-with st.sidebar:
-    st.header("📖 Kullanım")
-    st.markdown("""
-    1. `.env` dosyasını oluşturun ve API key'lerinizi ekleyin
-    2. Bir GitHub repo URL'si girin (örn. `https://github.com/tiangolo/fastapi`)
-    3. **Analiz Et** butonuna tıklayın
-    4. Agent tool'ları sırayla çağırarak analizi tamamlar
-
-    **Gereksinimler:**
-    - `GITHUB_TOKEN` (zorunlu)
-    - `ANTHROPIC_API_KEY` veya `OPENAI_API_KEY`
-    """)
 
 repo_url = st.text_input(
     "GitHub Repo URL",
@@ -79,4 +67,4 @@ if analyze_button and repo_url.strip():
             st.info(f"**Genel Değerlendirme:** {result['overall_assessment']}")
 
         except Exception as e:
-            st.error(f"❌ Hata: {str(e)}")
+            st.error(f" Hata: {str(e)}")

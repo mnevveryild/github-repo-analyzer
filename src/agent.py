@@ -21,7 +21,7 @@ def get_llm():
             temperature=0.2,
             api_key=Config.OPENAI_API_KEY,
         )
-    else:
+    else: # biz bunu kullanacağız ama diğerlerini de destekleyelim ki isteyen değiştirebilsin
         from langchain_groq import ChatGroq
         return ChatGroq(
             model=Config.GROQ_MODEL,

@@ -11,7 +11,7 @@ class TechStack(BaseModel):
 
 
 class Suggestion(BaseModel):
-    category: Literal["security", "performance", "testing", "documentation", "architecture", "dx", "dependencies"]
+    category: Literal["security", "performance", "testing", "documentation", "architecture", "dx", "dependencies"] #dx = developer experience
     title: str
     description: str
     priority: Literal["high", "medium", "low"]
