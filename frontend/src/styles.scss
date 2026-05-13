@@ -1,0 +1,49 @@
+:root {
+  --bg-primary: #0d0d1a;
+  --bg-secondary: #13132b;
+  --bg-card: #1a1a35;
+  --bg-card-hover: #1f1f3d;
+  --color-primary: #9b6dbf;
+  --color-primary-light: #b08fd4;
+  --color-accent: #c4968c;
+  --text-primary: #e8e8f0;
+  --text-secondary: #9898b0;
+  --border-color: #2a2a50;
+  --success: #4caf82;
+  --warning: #f0a050;
+  --danger: #e05555;
+  --info: #5090d0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}

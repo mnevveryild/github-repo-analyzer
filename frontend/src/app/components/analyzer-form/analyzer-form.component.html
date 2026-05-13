@@ -1,0 +1,79 @@
+<section class="form-card">
+  <h2>Depo Analizi</h2>
+  <p class="form-description">GitHub depo URL'sini girin ve analiz modunu secin.</p>
+
+  <form (ngSubmit)="onSubmit()" #analyzerForm="ngForm">
+    <div class="form-group">
+      <label for="repoUrl">GitHub Depo URL</label>
+      <input
+        id="repoUrl"
+        type="url"
+        [(ngModel)]="repoUrl"
+        name="repoUrl"
+        placeholder="https://github.com/kullanici/depo"
+        required
+        class="form-control"
+        [disabled]="loading"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Analiz Modu</label>
+      <div class="mode-selector">
+        <label class="mode-option" [class.active]="mode === 'code_review'">
+          <input
+            type="radio"
+            name="mode"
+            value="code_review"
+            [(ngModel)]="mode"
+            [disabled]="loading"
+          />
+          <div class="mode-content">
+            <span class="mode-title">Kod Inceleme</span>
+            <span class="mode-desc">Guclu yonler, oneriler ve genel degerlendirme</span>
+          </div>
+        </label>
+        <label class="mode-option" [class.active]="mode === 'system_design'">
+          <input
+            type="radio"
+            name="mode"
+            value="system_design"
+            [(ngModel)]="mode"
+            [disabled]="loading"
+          />
+          <div class="mode-content">
+            <span class="mode-title">Sistem Tasarimi</span>
+            <span class="mode-desc">Klonlama yol haritasi ve mimari plan</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      [disabled]="loading || !repoUrl.trim()"
+    >
+      @if (loading) {
+        <span class="spinner"></span>
+        Analiz ediliyor...
+      } @else {
+        Analiz Et
+      }
+    </button>
+  </form>
+
+  @if (error) {
+    <div class="error-box">
+      <strong>Hata:</strong> {{ error }}
+    </div>
+  }
+</section>
+
+@if (codeReviewResult) {
+  <app-code-review-result [result]="codeReviewResult" />
+}
+
+@if (systemDesignResult) {
+  <app-system-design-result [result]="systemDesignResult" />
+}

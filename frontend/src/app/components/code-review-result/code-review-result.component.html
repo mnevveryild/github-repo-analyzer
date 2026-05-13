@@ -1,0 +1,82 @@
+<section class="result-section">
+
+  <div class="repo-header">
+    <h2>{{ result.repo_name }}</h2>
+    <p>{{ result.description }}</p>
+  </div>
+
+  <div class="summary-box">
+    <h3>Ozet</h3>
+    <p>{{ result.summary }}</p>
+  </div>
+
+  <!-- Teknoloji Yigini -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('techStack')">
+      <span>Teknoloji Yigini</span>
+      <span class="chevron">{{ expanded['techStack'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['techStack']) {
+      <div class="panel-body">
+        @for (entry of techEntries(); track entry.label) {
+          <div class="tech-row">
+            <span class="tech-label">{{ entry.label }}</span>
+            <div class="badge-row">
+              @for (item of entry.items; track item) {
+                <span class="badge badge-tech">{{ item }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Guclu Yonler -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('strengths')">
+      <span>Guclu Yonler</span>
+      <span class="chevron">{{ expanded['strengths'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['strengths']) {
+      <div class="panel-body">
+        <ul class="dot-list dot-success">
+          @for (s of result.strengths; track s) {
+            <li>{{ s }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  <!-- Oneriler -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('suggestions')">
+      <span>Oneriler <span class="count">{{ result.suggestions.length }}</span></span>
+      <span class="chevron">{{ expanded['suggestions'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['suggestions']) {
+      <div class="panel-body">
+        <div class="suggestion-grid">
+          @for (s of result.suggestions; track s.title) {
+            <div class="suggestion-card">
+              <div class="suggestion-meta">
+                <span class="badge" [ngClass]="categoryClass(s.category)">{{ s.category }}</span>
+                <span class="badge" [ngClass]="priorityClass(s.priority)">{{ s.priority }}</span>
+              </div>
+              <h4>{{ s.title }}</h4>
+              <p>{{ s.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Genel Degerlendirme -->
+  <div class="assessment-box">
+    <h3>Genel Degerlendirme</h3>
+    <p>{{ result.overall_assessment }}</p>
+  </div>
+
+</section>

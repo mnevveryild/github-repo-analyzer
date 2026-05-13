@@ -1,0 +1,113 @@
+<section class="result-section">
+
+  <div class="repo-header">
+    <div class="repo-top">
+      <h2>{{ result.repo_name }}</h2>
+      <div class="duration-chip">
+        <span class="duration-label">Toplam Sure</span>
+        <span class="duration-value">{{ result.total_estimated_duration }}</span>
+      </div>
+    </div>
+    <p>{{ result.description }}</p>
+  </div>
+
+  <!-- Temel Ozellikler -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('features')">
+      <span>Temel Ozellikler</span>
+      <span class="chevron">{{ expanded['features'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['features']) {
+      <div class="panel-body">
+        <ul class="dot-list dot-accent">
+          @for (f of result.core_features; track f) {
+            <li>{{ f }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  <!-- Onerilen Teknoloji Yigini -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('techStack')">
+      <span>Onerilen Teknoloji Yigini</span>
+      <span class="chevron">{{ expanded['techStack'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['techStack']) {
+      <div class="panel-body">
+        @for (entry of techEntries(); track entry.label) {
+          <div class="tech-row">
+            <span class="tech-label">{{ entry.label }}</span>
+            <div class="badge-row">
+              @for (item of entry.items; track item) {
+                <span class="badge badge-tech">{{ item }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Yol Haritasi -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('roadmap')">
+      <span>Yol Haritasi</span>
+      <span class="chevron">{{ expanded['roadmap'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['roadmap']) {
+      <div class="panel-body roadmap-body">
+        @for (step of result.roadmap; track step.phase) {
+          <div class="roadmap-step">
+            <div class="phase-dot" [ngStyle]="{ background: phaseColor(step.phase) }">
+              {{ step.phase }}
+            </div>
+            <div class="step-card">
+              <div class="step-top">
+                <h4>{{ step.title }}</h4>
+                <span class="step-duration">{{ step.estimated_duration }}</span>
+              </div>
+              <div class="step-cols">
+                <div>
+                  <span class="col-label">Gorevler</span>
+                  <ul class="inner-list">
+                    @for (task of step.tasks; track task) {
+                      <li>{{ task }}</li>
+                    }
+                  </ul>
+                </div>
+                <div>
+                  <span class="col-label">Ciktilar</span>
+                  <ul class="inner-list">
+                    @for (d of step.deliverables; track d) {
+                      <li>{{ d }}</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Olasi Zorluklar -->
+  <div class="panel">
+    <button class="panel-header" (click)="toggle('challenges')">
+      <span>Olasi Zorluklar</span>
+      <span class="chevron">{{ expanded['challenges'] ? '&#8963;' : '&#8964;' }}</span>
+    </button>
+    @if (expanded['challenges']) {
+      <div class="panel-body">
+        <ul class="challenge-list">
+          @for (c of result.potential_challenges; track c) {
+            <li>{{ c }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+</section>

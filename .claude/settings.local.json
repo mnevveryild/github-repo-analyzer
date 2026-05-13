@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(python -c ' *)",
-      "PowerShell(node -e \"require\\('docx'\\); console.log\\('docx OK'\\)\" 2>&1)"
+      "PowerShell(node -e \"require\\('docx'\\); console.log\\('docx OK'\\)\" 2>&1)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\mnevv\\\\OneDrive\\\\Desktop\\\\github-repo-analyzer\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)"
     ]
   }
 }
